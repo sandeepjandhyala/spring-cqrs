@@ -6,25 +6,28 @@
 package com.example.command;
 
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author jan_s
  */
+
 public class FileComplaintCommand {
     
-    private String Id;
-    private String name;
-    private String description;
+    @TargetAggregateIdentifier
+    private final String id;
+    private final String name;
+    private final String description;
 
-    public FileComplaintCommand(String Id, String name, String description) {
-        this.Id = Id;
+    public FileComplaintCommand(String id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {

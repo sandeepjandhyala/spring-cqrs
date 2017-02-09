@@ -7,6 +7,7 @@ package com.example.query;
 
 import com.example.command.ComplaintFiledEvent;
 import org.axonframework.eventhandling.EventHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -14,6 +15,7 @@ import org.axonframework.eventhandling.EventHandler;
  */
 public class ComplaintQueryObjectUpdater {
     
+    @Autowired
     public ComplaintQueryObjectRepository repo;
     
     @EventHandler

@@ -33,6 +33,7 @@ public class ComplaintsController {
     
     CommandGateway commandGateway;
 
+    @Autowired
     public ComplaintsController(ComplaintQueryObjectRepository queryRepository, CommandGateway commandGateway) {
         this.queryRepository = queryRepository;
         this.commandGateway = commandGateway;

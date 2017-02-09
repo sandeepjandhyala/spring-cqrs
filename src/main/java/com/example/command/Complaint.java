@@ -18,28 +18,23 @@ import org.springframework.util.Assert;
  */
 
 @Aggregate
-public class Complaint {
+public class Complaint  {
     
     @AggregateIdentifier
-    private String complaintId;
-
-    public Complaint() {
+    private String id;
+    
+    private Complaint(){
+        
     }
-    
-    
-     @CommandHandler
-    public void Complaint(FileComplaintCommand c){
-        
-        Assert.hasLength(c.getName());
-        
-        apply(new ComplaintFiledEvent(c.getId(),c.getName(),c.getDescription()));
-        
+
+    public Complaint(String complaintId, String companyName, String description ) {
+        apply(new ComplaintFiledEvent(complaintId, companyName, description));
     }
     
     @EventSourcingHandler
     public void on(ComplaintFiledEvent e)
     {
-        this.complaintId=e.getId();
+        this.id=e.getId();
     }
     
     
