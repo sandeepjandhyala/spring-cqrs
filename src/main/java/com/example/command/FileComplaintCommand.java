@@ -5,7 +5,6 @@
  */
 package com.example.command;
 
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 public class FileComplaintCommand {
     
-    @TargetAggregateIdentifier
     private final String id;
     private final String name;
     private final String description;

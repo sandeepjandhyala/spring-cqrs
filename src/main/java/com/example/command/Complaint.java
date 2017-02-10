@@ -16,26 +16,30 @@ import org.springframework.util.Assert;
  *
  * @author jan_s
  */
-
 @Aggregate
-public class Complaint  {
-    
+public class Complaint {
+
     @AggregateIdentifier
-    private String id;
-    
-    private Complaint(){
-        
+    private String complaintId;
+
+   
+
+    /* public Complaint(String complaintId, String companyName, String description ) {
+        System.out.println(" complaint aggregate " +complaintId);
+        apply(new ComplaintFiledEvent(complaintId, companyName, description));
+    } */
+     
+     
+    @CommandHandler
+    public Complaint(FileComplaintCommand c) { 
+        apply(new ComplaintFiledEvent(c.getId(), c.getName(), c.getDescription()));
+
     }
 
-    public Complaint(String complaintId, String companyName, String description ) {
-        apply(new ComplaintFiledEvent(complaintId, companyName, description));
-    }
-    
     @EventSourcingHandler
-    public void on(ComplaintFiledEvent e)
-    {
-        this.id=e.getId();
+    public void on(ComplaintFiledEvent e) {
+        System.out.println(" complaint event sourcing handler " + e.getId());
+        this.complaintId = e.getId();
     }
-    
-    
+
 }

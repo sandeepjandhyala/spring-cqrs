@@ -29,9 +29,9 @@ import com.example.query.ComplaintQueryObjectRepository;
 public class ComplaintsController {
     
  
-    ComplaintQueryObjectRepository queryRepository;
+   private final ComplaintQueryObjectRepository queryRepository;
     
-    CommandGateway commandGateway;
+    private final CommandGateway commandGateway;
 
     @Autowired
     public ComplaintsController(ComplaintQueryObjectRepository queryRepository, CommandGateway commandGateway) {
@@ -55,6 +55,7 @@ public class ComplaintsController {
     public CompletableFuture<String> fileComplaint(@RequestBody Map<String,String> request)
     {
         String id = UUID.randomUUID().toString();
+        System.out.println("file complaint command about to be fired " +id);
         return commandGateway.send(new FileComplaintCommand(id, request.get("company") , request.get("description")));
     }
 }
